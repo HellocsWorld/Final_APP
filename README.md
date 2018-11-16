@@ -1,4 +1,4 @@
-# ChatROOM App
+# Debate ChatROOM App
 A simple social app focused on creating chatting rooms about simple subjects like politics, food, animes, etc. each user can create a new chatRooM with a question or go into a chatRooM already created. users will receive notification only when someone reply to their comments.
 
 #Must-have features
