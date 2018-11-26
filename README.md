@@ -1,12 +1,15 @@
-# Debate ChatROOM App
-A simple social app focused on creating chatting rooms about simple subjects like politics, food, animes, etc. each user can create a new chatRooM with a question or go into a chatRooM already created. users will receive notification only when someone reply to their comments.
+# ChatROOM App
+
+a message app to chat between two users. the app allows two users two communicate via app. the app connects by username sharing. 
 
 #Must-have features
 1) a profile feature (image, name, email, birthdate)
-2) a chatroom view(question section and comment section)
-3) a search feature to look for new chatroom 
+2) a welcome page
+3) a signing page 
+4) a message page( send new mesage, create new message, see old message)
+5) a private message window (send and receive message)
 
 #nice-to-have features
-1) a direct message feature
-2) a include image on question feature 
+1) a group chat feature 
+2) a like feature 
 
