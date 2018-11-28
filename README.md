@@ -13,3 +13,9 @@ a message app to chat between two users. the app allows two users to communicate
 1) a group chat feature 
 2) a like feature 
 
+
+
+#Instructio
+
+GoogleService-Info.plist has been skipped for security reasons and it is necessary to run firebase. In order to run the app create a firebase account and add the GoogleService-Info.plist file to the project.
+
