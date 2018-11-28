@@ -3,7 +3,7 @@
 a message app to chat between two users. the app allows two users to communicate via app. the app connects by username sharing. 
 
 #Must-have features
-1) a profile feature (image, name, email, birthdate)
+1) a profile feature (image, name, email, password)
 2) a welcome page
 3) a signing page 
 4) a message page(create new message, see old message)
