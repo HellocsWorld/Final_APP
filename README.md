@@ -5,7 +5,7 @@ a message app to chat between two users. the app allows two users to communicate
 # Must-have features
 1) a profile feature (image, name, email, birthdate)
 2) a welcome page
-3) a signing page 
+3) a login page 
 4) a message page(create new message, see old message)
 5) a private message window (send and receive message)
 
@@ -13,9 +13,19 @@ a message app to chat between two users. the app allows two users to communicate
 1) a group chat feature 
 2) a like feature 
 
-
-
 # Instruction
 
-GoogleService-Info.plist has been skipped for security reasons and it is necessary to run firebase. In order to run the app create a firebase account and add the GoogleService-Info.plist file to the project.
+GoogleService-Info.plist has been skipped for security reasons and it is necessary to run firebase. 
+In order to run the app create a firebase account and add the GoogleService-Info.plist file to the project.
+
+#time stimate
+login (5 hours)
+registration(10 hours)
+welcome (2 hours)
+profile(10 hours)
+message page (5 hours)
+private message (7 hours)
+
+
+
 
