@@ -1,19 +1,104 @@
 //
-//  RegisterViewController.swift
-//  Flash Chat
+//  RedisterViewController.swift
+//  ChatApp
 //
-//  This is the View Controller which registers new users with Firebase
+//  Created by Raul Serrano on 11/27/18.
+//  Copyright © 2018 Raul Serrano. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class RegisterViewController: UIViewController {
-
+    
+    var validEmail: Bool = false
+    
+    @IBOutlet var emailField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerButton.isEnabled = false
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     
+    @IBAction func registerPressed() {
+   
+        SVProgressHUD.show()
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "This is awkward", message: "your image did not upload check your network and try again.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                self.viewDidLoad()
+                   
+            } else {
+                self.performSegue(withIdentifier: "goToUserinfo", sender: self)
+                SVProgressHUD.dismiss()
+            }
+        }
+    }
+    
+   //CHECKEMAIL: ~check if email is valid
+    @IBAction func doneEditingEmail(_ sender: Any) {
+        if !emailField.text!.isEmpty {
+            validEmail = isValidEmail(testStr: emailField.text!)
+            print(validEmail)
+        } else{
+            let alert = UIAlertController(title: "Empty Email", message: "Your Email cannot be empty.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
+        if validEmail != true {
+            let alert = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
+    }
+    //Mark: ~check password
+    @IBAction func passwordDidChange(_ sender: Any) {
+        if passwordField.text!.count > 6 && validEmail == true {
+            registerButton.isEnabled = true
+        }
+    }
+    
+   /* func checkCorrectInput() {
+      if validEmail == false{
+          let alert = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
+        
+           alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+           self.present(alert, animated: true)
+           return
+        }else if passwordField.text!.isEmpty || passwordField.text!.count < 6  {
+            let alert = UIAlertController(title: "Invalid Password", message: "Your password cannot be empty and should be greater than 6 characters.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }else {
+           allGood = true
+         }
+    }*/
+
+
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
 }
