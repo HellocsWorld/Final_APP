@@ -28,6 +28,10 @@
 		B8388F1421AE6D3C0021F4DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8388F1021AE6D3C0021F4DA /* LaunchScreen.storyboard */; };
 		B8388F1B21AF5A3C0021F4DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8388F1A21AF5A3C0021F4DA /* GoogleService-Info.plist */; };
 		B8388F1D21B26FD50021F4DA /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F1C21B26FD50021F4DA /* UserInfoController.swift */; };
+		B8388F2221B389780021F4DA /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8388F2021B389780021F4DA /* MessageCell.xib */; };
+		B8388F2321B389780021F4DA /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F2121B389780021F4DA /* ContactCell.swift */; };
+		B8388F2521B394700021F4DA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F2421B394700021F4DA /* Message.swift */; };
+		B8388F2721B394CC0021F4DA /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F2621B394CC0021F4DA /* ContactModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		B8388F1021AE6D3C0021F4DA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8388F1A21AF5A3C0021F4DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8388F1C21B26FD50021F4DA /* UserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
+		B8388F2021B389780021F4DA /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		B8388F2121B389780021F4DA /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		B8388F2421B394700021F4DA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B8388F2621B394CC0021F4DA /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		CB73FFDFC03D1C344345DDDE /* Pods-ChatAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatAppTests/Pods-ChatAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4A78469598BAE74B74C6AA1 /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +147,8 @@
 		B8388EFD21AE67400021F4DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B8388F2421B394700021F4DA /* Message.swift */,
+				B8388F2621B394CC0021F4DA /* ContactModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +156,8 @@
 		B8388EFE21AE67510021F4DA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8388F2121B389780021F4DA /* ContactCell.swift */,
+				B8388F2021B389780021F4DA /* MessageCell.xib */,
 				B8388F1021AE6D3C0021F4DA /* LaunchScreen.storyboard */,
 				B8388F0F21AE6D3C0021F4DA /* Main.storyboard */,
 			);
@@ -261,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8388F2221B389780021F4DA /* MessageCell.xib in Resources */,
 				B8388F1321AE6D3C0021F4DA /* LaunchScreen.storyboard in Resources */,
 				B8388F1B21AF5A3C0021F4DA /* GoogleService-Info.plist in Resources */,
 				B8388EE521AE67100021F4DA /* Assets.xcassets in Resources */,
@@ -363,10 +376,13 @@
 			files = (
 				B8388F0521AE6C910021F4DA /* WelcomeViewController.swift in Sources */,
 				B8388F0B21AE6C910021F4DA /* LogInViewController.swift in Sources */,
+				B8388F2321B389780021F4DA /* ContactCell.swift in Sources */,
+				B8388F2521B394700021F4DA /* Message.swift in Sources */,
 				B8388F0D21AE6C910021F4DA /* ChatViewController.swift in Sources */,
 				B8388F0921AE6C910021F4DA /* ProfileViewController.swift in Sources */,
 				B8388F1D21B26FD50021F4DA /* UserInfoController.swift in Sources */,
 				B8388EDE21AE670F0021F4DA /* AppDelegate.swift in Sources */,
+				B8388F2721B394CC0021F4DA /* ContactModel.swift in Sources */,
 				B8388F0721AE6C910021F4DA /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

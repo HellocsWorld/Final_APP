@@ -22,6 +22,8 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
         self.profileImage.clipsToBounds = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -39,9 +41,7 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         _ = tapGestureRecognizer.view as! UIImageView
-        
         let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        
         let addfromCamera = UIAlertAction(title: "Camera", style: .default) { _ in
             self.openCameraButton()
             

@@ -94,7 +94,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="passwordDidChange:" destination="qQg-wA-Esh" eventType="editingChanged" id="5WN-FQ-7ro"/>
+                                    <action selector="passwordChanged:" destination="qQg-wA-Esh" eventType="editingChanged" id="GOZ-QY-FPj"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5h-GA-W6U" userLabel="creenView">
@@ -111,7 +111,7 @@
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerPressed" destination="qQg-wA-Esh" eventType="touchUpInside" id="Ytf-mu-3iE"/>
+                                    <action selector="registerPressed" destination="qQg-wA-Esh" eventType="touchUpInside" id="CXu-hB-gnj"/>
                                     <segue destination="26w-iy-4dz" kind="push" identifier="goToUserinfo" id="OpQ-R2-sYt"/>
                                 </connections>
                             </button>
@@ -120,7 +120,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="doneEditingEmail:" destination="qQg-wA-Esh" eventType="editingDidEnd" id="JKk-q6-1j3"/>
+                                    <action selector="doneEditingEmail:" destination="qQg-wA-Esh" eventType="editingDidEnd" id="y8L-bH-Gkv"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="1085.5999999999999" y="-416.74876847290642"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--messages-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController storyboardIdentifier="chatVC" id="vXZ-lx-hvc" customClass="ChatViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -302,7 +302,7 @@
                             <constraint firstAttribute="trailing" secondItem="7eI-kw-TVm" secondAttribute="trailing" id="z26-fa-Hmy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OGj-fw-WBv">
+                    <navigationItem key="navigationItem" title="messages" id="OGj-fw-WBv">
                         <barButtonItem key="rightBarButtonItem" title="Receiver" id="k6X-QT-ScN"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -320,7 +320,7 @@
         <!--userName-->
         <scene sceneID="mCL-q0-dNh">
             <objects>
-                <viewController id="NRK-5t-iid" customClass="ProfileViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="userName" id="NRK-5t-iid" customClass="ProfileViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x3A-zP-naO"/>
                         <viewControllerLayoutGuide type="bottom" id="1ed-Cy-dnw"/>
@@ -330,7 +330,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3f2-K2-h2R">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="163" width="414" height="733"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -342,26 +342,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Reuse Identifier" id="YC3-IM-cxn">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YC3-IM-cxn" id="cV0-V4-iPM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="gJ2-jX-Teg">
+                                <rect key="frame" x="11" y="88" width="67" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="userName" id="Yf2-in-Pw7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S8S-Fe-Qdn">
                             <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="push" id="6Zy-v3-iIg"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="gotoMessages" id="iYq-sz-hSi"/>
+                        <outlet property="contactTableView" destination="3f2-K2-h2R" id="zU7-Wg-bE0"/>
+                        <outlet property="displayNameTitle" destination="Yf2-in-Pw7" id="Zgy-Og-oMH"/>
+                        <outlet property="profileImageView" destination="gJ2-jX-Teg" id="S2O-u3-ItL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUQ-v7-flA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,21 +410,20 @@
                                     <color key="titleShadowColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="SaveProfileData:" destination="26w-iy-4dz" eventType="touchUpInside" id="n5q-Vq-8cw"/>
                                     <segue destination="NRK-5t-iid" kind="push" identifier="goToProfile" id="GgI-JW-Bvt"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="NSn-x7-phw">
-                                <rect key="frame" x="99" y="188" width="216" height="177"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="NSn-x7-phw">
+                                <rect key="frame" x="111" y="196" width="193" height="163"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="NSn-x7-phw" secondAttribute="height" multiplier="1:1" constant="39" id="2DY-uk-wKE"/>
+                                    <constraint firstAttribute="width" secondItem="NSn-x7-phw" secondAttribute="height" multiplier="1:1" constant="30" id="2DY-uk-wKE"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4iE-ff-Vci" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" id="1R9-zL-RMl"/>
-                            <constraint firstItem="NSn-x7-phw" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" constant="79" id="4kr-uT-QEo"/>
+                            <constraint firstItem="NSn-x7-phw" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" constant="91" id="4kr-uT-QEo"/>
                             <constraint firstItem="Lh5-85-zhz" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leading" id="9II-zQ-Roh"/>
                             <constraint firstItem="wPr-Bo-zhv" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" id="9OO-wY-woM"/>
                             <constraint firstItem="9tY-vp-7VG" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" id="CRR-a0-OI9"/>
@@ -437,7 +437,7 @@
                             <constraint firstItem="Hgl-zG-4dM" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" id="XVY-d9-8z9"/>
                             <constraint firstItem="9tY-vp-7VG" firstAttribute="trailing" secondItem="Uwn-1W-VqR" secondAttribute="trailingMargin" id="ahf-wu-zkf"/>
                             <constraint firstItem="9tY-vp-7VG" firstAttribute="top" secondItem="wPr-Bo-zhv" secondAttribute="bottom" constant="22" id="bOx-JH-Aty"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NSn-x7-phw" secondAttribute="trailing" constant="79" id="bdN-Z0-crI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NSn-x7-phw" secondAttribute="trailing" constant="90" id="bdN-Z0-crI"/>
                             <constraint firstItem="wPr-Bo-zhv" firstAttribute="centerX" secondItem="Uwn-1W-VqR" secondAttribute="centerX" id="eRj-B9-LBG"/>
                             <constraint firstItem="4iE-ff-Vci" firstAttribute="top" secondItem="9tY-vp-7VG" secondAttribute="bottom" constant="23" id="feI-Rw-0Ix"/>
                             <constraint firstItem="Hgl-zG-4dM" firstAttribute="trailing" secondItem="Uwn-1W-VqR" secondAttribute="trailingMargin" id="gXn-Yh-6dx"/>
@@ -448,13 +448,13 @@
                             <constraint firstItem="9tY-vp-7VG" firstAttribute="leading" secondItem="Uwn-1W-VqR" secondAttribute="leadingMargin" id="w4F-4q-1H6"/>
                             <constraint firstAttribute="trailing" secondItem="Lh5-85-zhz" secondAttribute="trailing" id="xGB-6p-6L0"/>
                             <constraint firstItem="Lh5-85-zhz" firstAttribute="top" secondItem="T0T-MX-QQI" secondAttribute="bottom" id="xoo-3O-W4u"/>
-                            <constraint firstItem="Hgl-zG-4dM" firstAttribute="top" secondItem="NSn-x7-phw" secondAttribute="bottom" constant="18" id="yZF-y0-IDb"/>
+                            <constraint firstItem="Hgl-zG-4dM" firstAttribute="top" secondItem="NSn-x7-phw" secondAttribute="bottom" constant="24" id="yZF-y0-IDb"/>
                         </constraints>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" id="IXR-bN-yOY"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="Rek-sM-tag"/>
+                    <navigationItem key="navigationItem" title="profile info" id="Rek-sM-tag"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="birthdateLabel" destination="wPr-Bo-zhv" id="8Om-Av-BSW"/>

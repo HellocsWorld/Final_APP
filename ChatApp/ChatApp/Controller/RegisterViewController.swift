@@ -70,12 +70,11 @@ class RegisterViewController: UIViewController {
         
     }
     //Mark: ~check password
-    @IBAction func passwordDidChange(_ sender: Any) {
-        if passwordField.text!.count > 6 && validEmail == true {
+    @IBAction func passwordChanged(_ sender: Any) {
+        if passwordField.text!.count > 5 && validEmail == true {
             registerButton.isEnabled = true
         }
     }
-    
    /* func checkCorrectInput() {
       if validEmail == false{
           let alert = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
