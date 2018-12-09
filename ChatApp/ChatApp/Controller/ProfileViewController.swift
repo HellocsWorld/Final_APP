@@ -29,12 +29,10 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
-        //TODO: Set yourself as the delegate and datasource here:
         contactTableView.delegate = self
         contactTableView.dataSource = self
         
         
-        //TODO: Register your MessageCell.xib file here:
         contactTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         configureTableView()
@@ -47,7 +45,6 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
     
     
     
-    //TODO: Declare cellForRowAtIndexPath here:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! ContactCell
         
@@ -63,13 +60,11 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    //TODO: Declare numberOfRowsInSection here:
     @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count
     }
     
     
-    //TODO: Declare configureTableView here:
     func configureTableView(){
         contactTableView.rowHeight = UITableView.automaticDimension
         contactTableView.estimatedRowHeight = 120.0
@@ -77,7 +72,7 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
     
     
     ///////////////////////////////////////////
- /*   //TODO: Declare textFieldDidEndEditing here:
+ /*
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         UIView.animate(withDuration: 0.5) {
@@ -123,7 +118,6 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         }
     } */
     
-    //TODO: Create the retrieveMessages method here:
     func retrieveMessage(){
         let messageDB = Database.database().reference().child("Messages")
         
@@ -149,7 +143,6 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func logOutPressed(_ sender: AnyObject) {
         
-        //TODO: Log out the user and send them back to WelcomeViewController
         //Mark: ~ try catch logout
         do {
             try Auth.auth().signOut()

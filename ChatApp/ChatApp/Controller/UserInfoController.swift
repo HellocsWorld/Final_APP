@@ -100,8 +100,6 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    
-    //TODO: Declare textFieldDidEndEditing here:
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()

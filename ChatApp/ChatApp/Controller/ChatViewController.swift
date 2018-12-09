@@ -27,21 +27,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Set yourself as the delegate and datasource here:
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
         
-        //TODO: Set yourself as the delegate of the text field here:
         messageTextfield.delegate = self
         
         
-        //TODO: Set the tapGesture here:
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         
         
-        //TODO: Register your MessageCell.xib file here:
+        //Register your MessageCell.xib file here:
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         configureTableView()
@@ -58,7 +55,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    //TODO: Declare cellForRowAtIndexPath here:
+    //Declare cellForRowAtIndexPath here:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! ContactCell
         
@@ -78,20 +75,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    //TODO: Declare numberOfRowsInSection here:
+    // Declare numberOfRowsInSection here:
     @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count
     }
     
     
-    //TODO: Declare tableViewTapped here:
+    // Declare tableViewTapped here:
     @objc func tableViewTapped(){
         messageTextfield.endEditing(true)
     }
     
     
     
-    //TODO: Declare configureTableView here:
+    // Declare configureTableView here:
     func configureTableView(){
         messageTableView.rowHeight = UITableView.automaticDimension
         messageTableView.estimatedRowHeight = 120.0
@@ -105,7 +102,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    //TODO: Declare textFieldDidBeginEditing here:
+    //Declare textFieldDidBeginEditing here:
     //the keyboard is 258 + 50 of the message box = 308
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5){
@@ -116,7 +113,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    //TODO: Declare textFieldDidEndEditing here:
+    // Declare textFieldDidEndEditing here:
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         UIView.animate(withDuration: 0.5) {
@@ -140,7 +137,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         messageTextfield.endEditing(true)
         
-        //TODO: Send the message to Firebase and save it in our database
+        //Send the message to Firebase and save it in our database
         messageTextfield.isEnabled = false
         sendButton.isEnabled = false
         
@@ -162,7 +159,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    //TODO: Create the retrieveMessages method here:
+    // Create the retrieveMessages method here:
     func retrieveMessage(){
         let messageDB = Database.database().reference().child("Messages")
         
@@ -188,7 +185,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func logOutPressed(_ sender: AnyObject) {
         
-        //TODO: Log out the user and send them back to WelcomeViewController
+        //Log out the user and send them back to WelcomeViewController
         //Mark: ~ try catch logout
         do {
             try Auth.auth().signOut()
