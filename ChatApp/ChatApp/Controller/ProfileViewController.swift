@@ -12,11 +12,11 @@ import Firebase
 class ProfileViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
     
     @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet weak var displayNameTitle: UINavigationItem!
     @IBOutlet weak var contactTableView: UITableView!
+    @IBOutlet weak var displayName: UILabel!
     
     
-    // Declare instance variables here
+    // Declare instance variables 
     var messageArray: [Message] = [Message]()
     
    
@@ -32,6 +32,8 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         contactTableView.delegate = self
         contactTableView.dataSource = self
         
+        //set display name
+        getDisplayName()
         
         contactTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
@@ -71,52 +73,6 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    ///////////////////////////////////////////
- /*
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        UIView.animate(withDuration: 0.5) {
-            self.heightConstraint.constant = 50
-            self.view.layoutIfNeeded()
-        }
-        
-    }*/
-    
-    
-    ///////////////////////////////////////////
-    
-    
-    //MARK: - Send & Recieve from Firebase
-    
-    
-    
-    
-  /*
-    @IBAction func sendPressed(_ sender: AnyObject) {
-        
-        messageTextfield.endEditing(true)
-        
-        //TODO: Send the message to Firebase and save it in our database
-        messageTextfield.isEnabled = false
-        sendButton.isEnabled = false
-        
-        let messagesDB = Database.database().reference().child("Messages")
-        
-        let messageDictionaty = ["Sender": Auth.auth().currentUser?.email, "MessageBody": messageTextfield.text!]
-        
-        //save message dictionary to database
-        messagesDB.childByAutoId().setValue(messageDictionaty) {
-            (error, reference) in
-            if error != nil{
-                print(error!)
-            }else {
-                print("Message Saved")
-            }
-            self.messageTextfield.isEnabled = true
-            self.sendButton.isEnabled = true
-            self.messageTextfield.text = ""
-        }
-    } */
     
     func retrieveMessage(){
         let messageDB = Database.database().reference().child("Messages")
@@ -137,7 +93,16 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
+    func getDisplayName(){
+        let nameFromDB = Database.database().reference().child("profile")
+        
+        nameFromDB.observe(.childAdded) { (snapshot) in
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            let name = snapshotValue["display_name"]!
+            print(name)
+            self.displayName.text = name
+        }
+    }
     
     
     

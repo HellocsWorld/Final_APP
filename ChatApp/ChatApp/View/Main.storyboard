@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="PfL-jt-q3u">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SYb-Xx-USU">
                                 <rect key="frame" x="16" y="441" width="382" height="30"/>
@@ -98,7 +98,7 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5h-GA-W6U" userLabel="creenView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="266"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="266"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="266" id="hHX-jy-eR2"/>
                                 </constraints>
@@ -112,7 +112,6 @@
                                 </state>
                                 <connections>
                                     <action selector="registerPressed" destination="qQg-wA-Esh" eventType="touchUpInside" id="CXu-hB-gnj"/>
-                                    <segue destination="26w-iy-4dz" kind="push" identifier="goToUserinfo" id="OpQ-R2-sYt"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-HS-xgc">
@@ -150,6 +149,8 @@
                         <outlet property="emailField" destination="M1R-HS-xgc" id="EZN-co-Khq"/>
                         <outlet property="passwordField" destination="SYb-Xx-USU" id="pWb-Ds-G8q"/>
                         <outlet property="registerButton" destination="67C-Ey-AV3" id="YGA-Yk-Qie"/>
+                        <segue destination="w26-XG-9cC" kind="push" identifier="goToWelcome" id="Nul-SI-lTS"/>
+                        <segue destination="26w-iy-4dz" kind="push" identifier="goToUserInfo" id="uM7-2L-ZEA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMZ-W7-skD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -245,7 +246,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpY-IA-acB" userLabel="Compose View">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="763" width="414" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Message" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W4K-YF-skl">
                                         <rect key="frame" x="8" y="10" width="344" height="30"/>
@@ -277,7 +278,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-kw-TVm" userLabel="Message Table View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="675"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="jHH-VD-leb">
@@ -348,10 +349,17 @@
                                 <rect key="frame" x="11" y="88" width="67" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6c-nG-XXP">
+                                <rect key="frame" x="168" y="107" width="110" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="userName" id="Yf2-in-Pw7">
+                    <navigationItem key="navigationItem" id="Yf2-in-Pw7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S8S-Fe-Qdn">
                             <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -361,7 +369,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contactTableView" destination="3f2-K2-h2R" id="zU7-Wg-bE0"/>
-                        <outlet property="displayNameTitle" destination="Yf2-in-Pw7" id="Zgy-Og-oMH"/>
+                        <outlet property="displayName" destination="a6c-nG-XXP" id="4cb-SZ-wHD"/>
                         <outlet property="profileImageView" destination="gJ2-jX-Teg" id="S2O-u3-ItL"/>
                     </connections>
                 </viewController>
@@ -382,7 +390,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="Lh5-85-zhz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="display name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgl-zG-4dM">
                                 <rect key="frame" x="20" y="383" width="374" height="30"/>
@@ -494,6 +502,7 @@
         <image name="profile" width="204.80000305175781" height="204.80000305175781"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AHp-XP-GLP"/>
+        <segue reference="GgI-JW-Bvt"/>
+        <segue reference="Nul-SI-lTS"/>
     </inferredMetricsTieBreakers>
 </document>

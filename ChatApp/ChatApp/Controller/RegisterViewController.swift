@@ -36,17 +36,16 @@ class RegisterViewController: UIViewController {
         SVProgressHUD.show()
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
             if error != nil {
-                let alert = UIAlertController(title: "This is awkward", message: "your image did not upload check your network and try again.", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let alert = UIAlertController(title: "Duplicate Email", message: "there is already an account with this email perhaps you meant to log in.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.performSegue(withIdentifier: "goToWelcome", sender: self)}))
                 self.present(alert, animated: true)
-                self.viewDidLoad()
-                   
-            } else {
-                self.performSegue(withIdentifier: "goToUserinfo", sender: self)
                 SVProgressHUD.dismiss()
+                   
             }
+            
         }
+        self.performSegue(withIdentifier: "goToUserInfo", sender: self)
+        SVProgressHUD.dismiss()
     }
     
    //CHECKEMAIL: ~check if email is valid
