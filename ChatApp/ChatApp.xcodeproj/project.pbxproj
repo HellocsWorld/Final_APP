@@ -16,8 +16,6 @@
 		B8388F0621AE6C910021F4DA /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0021AE6C910021F4DA /* WelcomeViewController.swift */; };
 		B8388F0721AE6C910021F4DA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0121AE6C910021F4DA /* RegisterViewController.swift */; };
 		B8388F0821AE6C910021F4DA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0121AE6C910021F4DA /* RegisterViewController.swift */; };
-		B8388F0921AE6C910021F4DA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0221AE6C910021F4DA /* ProfileViewController.swift */; };
-		B8388F0A21AE6C910021F4DA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0221AE6C910021F4DA /* ProfileViewController.swift */; };
 		B8388F0B21AE6C910021F4DA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0321AE6C910021F4DA /* LogInViewController.swift */; };
 		B8388F0C21AE6C910021F4DA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0321AE6C910021F4DA /* LogInViewController.swift */; };
 		B8388F0D21AE6C910021F4DA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8388F0421AE6C910021F4DA /* ChatViewController.swift */; };
@@ -62,7 +60,6 @@
 		B8388EF421AE67110021F4DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8388F0021AE6C910021F4DA /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B8388F0121AE6C910021F4DA /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		B8388F0221AE6C910021F4DA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B8388F0321AE6C910021F4DA /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		B8388F0421AE6C910021F4DA /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		B8388F0F21AE6D3C0021F4DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -180,7 +177,6 @@
 				B8388EDD21AE670F0021F4DA /* AppDelegate.swift */,
 				B8388F0421AE6C910021F4DA /* ChatViewController.swift */,
 				B8388F0321AE6C910021F4DA /* LogInViewController.swift */,
-				B8388F0221AE6C910021F4DA /* ProfileViewController.swift */,
 				B8388F0121AE6C910021F4DA /* RegisterViewController.swift */,
 				B8388F0021AE6C910021F4DA /* WelcomeViewController.swift */,
 				B8388F1C21B26FD50021F4DA /* UserInfoController.swift */,
@@ -393,7 +389,6 @@
 				B8CFEB5C21BDF94900668411 /* ContactCell.swift in Sources */,
 				B8388F2521B394700021F4DA /* Message.swift in Sources */,
 				B8388F0D21AE6C910021F4DA /* ChatViewController.swift in Sources */,
-				B8388F0921AE6C910021F4DA /* ProfileViewController.swift in Sources */,
 				B8CFEB5621BDDEF100668411 /* ContactViewController.swift in Sources */,
 				B8388F1D21B26FD50021F4DA /* UserInfoController.swift in Sources */,
 				B8388EDE21AE670F0021F4DA /* AppDelegate.swift in Sources */,
@@ -409,7 +404,6 @@
 			files = (
 				B8388F0821AE6C910021F4DA /* RegisterViewController.swift in Sources */,
 				B8388EF321AE67110021F4DA /* ChatAppTests.swift in Sources */,
-				B8388F0A21AE6C910021F4DA /* ProfileViewController.swift in Sources */,
 				B8388F0C21AE6C910021F4DA /* LogInViewController.swift in Sources */,
 				B8388F0E21AE6C910021F4DA /* ChatViewController.swift in Sources */,
 				B8388F0621AE6C910021F4DA /* WelcomeViewController.swift in Sources */,
