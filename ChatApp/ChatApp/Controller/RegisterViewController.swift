@@ -74,23 +74,6 @@ class RegisterViewController: UIViewController {
             registerButton.isEnabled = true
         }
     }
-   /* func checkCorrectInput() {
-      if validEmail == false{
-          let alert = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
-        
-           alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-           self.present(alert, animated: true)
-           return
-        }else if passwordField.text!.isEmpty || passwordField.text!.count < 6  {
-            let alert = UIAlertController(title: "Invalid Password", message: "Your password cannot be empty and should be greater than 6 characters.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }else {
-           allGood = true
-         }
-    }*/
 
 
     func isValidEmail(testStr:String) -> Bool {

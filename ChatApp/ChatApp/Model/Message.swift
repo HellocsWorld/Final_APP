@@ -9,7 +9,10 @@
 class Message {
     
     var sender: String = ""
+    var receiver: String = ""
     var messageBody: String = ""
+    var date: String  = ""
+    var profImageUrl: String = ""
     
     
 }

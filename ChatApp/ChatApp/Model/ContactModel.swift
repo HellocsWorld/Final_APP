@@ -10,4 +10,7 @@ import Foundation
 
 class ContactModel {
     var name: String = ""
+    var email: String = ""
+    var id: String = ""
+    var profImageUrl: String = ""
 }

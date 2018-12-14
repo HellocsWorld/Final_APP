@@ -21,6 +21,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,12 +35,12 @@ class LogInViewController: UIViewController {
         SVProgressHUD.show()
         Auth.auth().signIn(withEmail: emailfield.text!, password: passwordfield.text!) {(user, error) in
             
-            if error != nil {
-                print(error!)
+            if user != nil {
+                SVProgressHUD.dismiss()
+                self.performSegue(withIdentifier: "gotoContact", sender: self)
                 
             }else {
-                SVProgressHUD.dismiss()
-                self.performSegue(withIdentifier: "goToProfile", sender: self)
+                print(error!)
                 
             }
         }

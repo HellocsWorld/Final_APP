@@ -18,13 +18,13 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var displayNameLabel: UITextField!
     @IBOutlet weak var birthdateLabel: UITextField!
     @IBOutlet weak var countryLabel: UITextField!
+    var profImage: UIImage?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
         self.profileImage.clipsToBounds = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         profileImage.isUserInteractionEnabled = true
@@ -88,7 +88,8 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
         guard let image = info[.originalImage] as? UIImage else {print("HERE: ",
             Error.self)
             return}
-        profileImage.image = image
+         profImage = image
+        profileImage.image = profImage
         self.dismiss(animated:true, completion: nil)
     }
     
@@ -107,28 +108,52 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
     
+    func getUserDictionary(uid: String, values: [String: AnyObject]){
+        let profileDB = Database.database().reference().child("users").child(uid)
+        profileDB.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
+            (err, ref) in
+            if err != nil {
+                print(err!)
+                return
+            }
+            self.performSegue(withIdentifier: "gotoContact", sender: self)
+            print("Data Saved")
+        })
+        
+    }
+    
     //MARK: ~Save user Data to firebase
     @IBAction func SaveProfileData(_ sender: Any) {
+       
         SVProgressHUD.show()
-        let profileDB = Database.database().reference().child("profile")
         
-        let profileDictionaty = ["display_name": displayNameLabel.text!, "birthdate": birthdateLabel.text!, "country": countryLabel.text!]
-        
-        //save message dictionary to database
-        profileDB.childByAutoId().setValue(profileDictionaty) {
-            (error, reference) in
-            if error != nil{
-                print(error!)
-                return
-            }else {
-                print("user info saved")
-                SVProgressHUD.dismiss()
-                self.performSegue(withIdentifier: "goToProfile", sender: self)
+        if let userID = Auth.auth().currentUser?.uid{
+            let imageName = "profileImage" + userID
+          let storageRef = Storage.storage().reference().child(imageName + ".png")
+        if let fileName = profImage!.pngData() {
+            storageRef.putData(fileName, metadata: nil) { (metadata, error) in
+                guard let metadata = metadata else {
+                    print(error!)
+                    return
+                }
+                
+                storageRef.downloadURL{ (url, error) in
+                    guard let downloadURL = url else{
+                        print(error!)
+                        return
+                    }
+                    let urlString = downloadURL.absoluteString
+                    let profileDictionaty = ["email": Auth.auth().currentUser?.email! as Any, "id": userID as Any, "display_name": self.displayNameLabel.text!, "birthdate": self.birthdateLabel.text!, "country": self.countryLabel.text!, "profileURL" : urlString] as [String : Any]
+                    self.getUserDictionary(uid: userID, values: profileDictionaty as [String : AnyObject])
+                }
+                
+                
             }
-      
         }
-        
-        
+       
+        }else {
+            return
+        }
     }
     
 }

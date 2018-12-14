@@ -10,18 +10,15 @@ import UIKit
 import Firebase
 
 class ProfileViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
+
     
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet weak var contactTableView: UITableView!
+    @IBOutlet weak var profileView: UIImageView!
+    @IBOutlet weak var ActiveConversationTableView: UITableView!
     @IBOutlet weak var displayName: UILabel!
     
     
     // Declare instance variables 
     var messageArray: [Message] = [Message]()
-    
-   
-   
-    
     
     
     override func viewDidLoad() {
@@ -29,35 +26,46 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
-        contactTableView.delegate = self
-        contactTableView.dataSource = self
+       // if Auth.auth().currentUser?.uid == nil {
+            //sends the user to the welcome or root view controller
+         //   navigationController?.popToRootViewController(animated: true)
+       // }
+        
+        ActiveConversationTableView.delegate = self
+        ActiveConversationTableView.dataSource = self
         
         //set display name
-        getDisplayName()
+     //   getDisplayName()
         
-        contactTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customCell")
+       // ActiveConversationTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         configureTableView()
-        retrieveMessage()
+       // retrieveMessage()
         
         //delete lines on table
-        contactTableView.separatorStyle = .none
+        ActiveConversationTableView.separatorStyle = .none
         
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! ContactCell
-        
-        cell.messageBody.text = messageArray.last!.messageBody
-        cell.senderUsername.text = messageArray.last!.sender
-        cell.UserImageView.image = UIImage(named: "profile")
-        
-        if cell.senderUsername.text != Auth.auth().currentUser?.email {
-            cell.UserImageView.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-            cell.messageBackground.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)  //color literal
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MessageCell
+        let message = messageArray[indexPath.row]
+        let receiver = message.receiver
+            let db = Database.database().reference().child("users").child(receiver)
+        db.observeSingleEvent(of: .value, with: {(snapshot) in
+            if let value = snapshot.value as? NSDictionary{
+                cell.messageBody.text = self.messageArray.last!.messageBody
+                cell.senderUsername.text = value["display_name"] as? String ?? ""
+                cell.UserImageView.image = UIImage(named: "profile")
+                cell.UserImageView.backgroundColor =  _ColorLiteralType(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+                cell.messageBackground.backgroundColor =  _ColorLiteralType(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)  //color literal
+            }
+            
+            
+        })
+    
         
         return cell
     }
@@ -68,56 +76,85 @@ class ProfileViewController : UIViewController, UITableViewDelegate, UITableView
     
     
     func configureTableView(){
-        contactTableView.rowHeight = UITableView.automaticDimension
-        contactTableView.estimatedRowHeight = 120.0
+        ActiveConversationTableView.rowHeight = UITableView.automaticDimension
+        ActiveConversationTableView.estimatedRowHeight = 120.0
     }
     
     
     
-    func retrieveMessage(){
-        let messageDB = Database.database().reference().child("Messages")
+    /*func retrieveMessage(){
+        
+        let userID = Auth.auth().currentUser?.uid
+        let messageDB = Database.database().reference().child("Messages").child(userID!)
         
         messageDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String, String>
-            let text = snapshotValue["MessageBody"]!
-            let sender = snapshotValue["Sender"]!
+            print(snapshot)
+            let value = snapshot.value as? NSDictionary
+            let text = value?["MessageBody"] as? String ?? ""
+            let sender = value?["Sender"] as? String ?? ""
+            let receiver = value?["receiver"] as? String ?? ""
+            let date = value?["Date"] as? String ?? ""
             
             let message = Message()
             message.messageBody = text
             message.sender = sender
+            message.receiver = receiver
+            let dateFromDB = TimeInterval(date)
+            let time = NSDate(timeIntervalSince1970: TimeInterval(dateFromDB!))
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let myString = formatter.string(from: time as Date)
+            message.date = myString
+            
             
             self.messageArray.append(message)
             
             self.configureTableView()
-            self.contactTableView.reloadData()
+            self.ActiveConversationTableView.reloadData()
         }
-    }
+        
+    }*/
     
     func getDisplayName(){
-        let nameFromDB = Database.database().reference().child("profile")
-        
-        nameFromDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String, String>
-            let name = snapshotValue["display_name"]!
-            print(name)
-            self.displayName.text = name
+        let userID = Auth.auth().currentUser
+        if let user = userID {
+            let uid = user.uid
+            let nameFromDB = Database.database().reference().child("users").child(uid)
+            
+            nameFromDB.observe(.childAdded, with: {(snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["display_name"] as? String ?? ""
+                print(name)
+                self.displayName.text = name
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         }
+        
+        
+//        observe(.childAdded) { (snapshot) in
+//            let snapshotValue = snapshot.value as! Dictionary<String, String>
+//            let name = snapshotValue["display_name"]!
+//            print(name)
+//            self.displayName.text = name
+      // }
     }
     
     
     
-    @IBAction func logOutPressed(_ sender: AnyObject) {
+    @IBAction func signOutPressed(_ sender: AnyObject) {
         
         //Mark: ~ try catch logout
         do {
             try Auth.auth().signOut()
             
-            //send the user to the welcome or root view controller
+            //sends the user to the welcome or root view controller
             navigationController?.popToRootViewController(animated: true)
-        } catch {
-            print("error, while signing out")
+        } catch let error as NSError
+        {
+            print (error.localizedDescription)
         }
     }
     
-
 }
