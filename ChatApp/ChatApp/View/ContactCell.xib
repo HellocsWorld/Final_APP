@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customContactCell" rowHeight="82" id="y4W-eK-qOj" customClass="ContactCell" customModule="ChatApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y4W-eK-qOj" id="m08-xF-vz1">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="QDq-3y-HU1">
+                        <rect key="frame" x="0.0" y="10" width="53" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="53" id="5yn-ld-h4u"/>
+                            <constraint firstAttribute="width" constant="53" id="CfZ-zy-qkt"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVK-64-hBO">
+                        <rect key="frame" x="59" y="16" width="251" height="47"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyt-Ug-6Kj">
+                                <rect key="frame" x="9" y="12" width="242" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1819814891" green="0.69426733259999995" blue="0.53024792669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Iyt-Ug-6Kj" secondAttribute="bottom" constant="8" id="JZB-XY-AEA"/>
+                            <constraint firstAttribute="trailing" secondItem="Iyt-Ug-6Kj" secondAttribute="trailing" id="VUm-jq-K71"/>
+                            <constraint firstItem="Iyt-Ug-6Kj" firstAttribute="leading" secondItem="NVK-64-hBO" secondAttribute="leading" constant="9" id="kuP-FN-FFc"/>
+                            <constraint firstItem="Iyt-Ug-6Kj" firstAttribute="top" secondItem="NVK-64-hBO" secondAttribute="top" constant="12" id="lzo-c3-93S"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QDq-3y-HU1" firstAttribute="leading" secondItem="m08-xF-vz1" secondAttribute="leading" id="6ra-mf-HY9"/>
+                    <constraint firstItem="QDq-3y-HU1" firstAttribute="top" secondItem="m08-xF-vz1" secondAttribute="top" constant="10" id="DqO-Wb-Bs1"/>
+                    <constraint firstAttribute="trailing" secondItem="NVK-64-hBO" secondAttribute="trailing" constant="10" id="Ioe-xt-aEb"/>
+                    <constraint firstItem="NVK-64-hBO" firstAttribute="leading" secondItem="QDq-3y-HU1" secondAttribute="trailing" constant="6" id="R8c-dH-el2"/>
+                    <constraint firstItem="NVK-64-hBO" firstAttribute="top" secondItem="m08-xF-vz1" secondAttribute="top" constant="16" id="TzK-iW-hH9"/>
+                    <constraint firstAttribute="bottom" secondItem="NVK-64-hBO" secondAttribute="bottom" constant="17.5" id="rvx-sH-CJh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ContactName" destination="Iyt-Ug-6Kj" id="nsV-QA-wJn"/>
+                <outlet property="contactBackgroundView" destination="NVK-64-hBO" id="9Wp-uW-qXD"/>
+                <outlet property="contactImageView" destination="QDq-3y-HU1" id="GwN-Sx-SCf"/>
+            </connections>
+            <point key="canvasLocation" x="89.599999999999994" y="178.56071964017991"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profile" width="204.80000305175781" height="204.80000305175781"/>
+    </resources>
+</document>
