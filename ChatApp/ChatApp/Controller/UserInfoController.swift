@@ -37,7 +37,6 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.didReceiveMemoryWarning()
     }
     
-    //
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         _ = tapGestureRecognizer.view as! UIImageView
@@ -132,10 +131,6 @@ class UserInfoController: UIViewController, UIImagePickerControllerDelegate, UIN
           let storageRef = Storage.storage().reference().child(imageName + ".png")
         if let fileName = profImage!.pngData() {
             storageRef.putData(fileName, metadata: nil) { (metadata, error) in
-                guard let metadata = metadata else {
-                    print(error!)
-                    return
-                }
                 
                 storageRef.downloadURL{ (url, error) in
                     guard let downloadURL = url else{

@@ -17,7 +17,10 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var contactArray: [ContactModel] = [ContactModel]()
     var toID:String = ""
+    var name: String = ""
     var profImageURL: String = ""
+    var profURL: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,15 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.hidesBackButton = true
      //   let newBackButton = UIBarButtonItem(title: "log out", style: UIBarButtonItem.Style.plain, target: self, action: #selector(signOutPressed(sender:)))
      //   navigationItem.leftBarButtonItem = newBackButton
+
+
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+             imageView.layer.cornerRadius = imageView.frame.size.width/2
+             imageView.clipsToBounds = true
+             imageView.contentMode = .scaleAspectFit
+             let image = UIImage(named: "profile")
+             imageView.image = image
+             navigationItem.titleView = imageView
         
         contactTable.delegate = self
         contactTable.dataSource = self
@@ -36,11 +48,16 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         contactTable.separatorStyle = .none
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "messages" {
                 let controller = segue.destination as! ChatViewController
             controller.toID = toID
             controller.profimageURL = profImageURL
+            controller.name = name
             
 
         }
@@ -81,24 +98,26 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
             toID = contactArray[indexPath.row].id
             profImageURL = contactArray[indexPath.row].profImageUrl
-        self.performSegue(withIdentifier: "messages", sender: self)
+            self.performSegue(withIdentifier: "messages", sender: self)
     }
     
+    
+    //MARK: ~get contact names and info 
     func getDisplayName(){
         SVProgressHUD.show()
         if let userID = Auth.auth().currentUser?.uid {
             let nameFromDB = Database.database().reference().child("users").child(userID).child("Contact")
         
-        nameFromDB.observe(.childAdded, with: {(snapshot) in
+          nameFromDB.observe(.childAdded, with: {(snapshot) in
             // Get user value
             if let value = snapshot.value as? NSDictionary{
-                let name = value["display_name"] as? String ?? ""
+                self.name = value["display_name"] as? String ?? ""
                 let email = value["email"] as? String ?? ""
                 let id = value["contactID"] as? String ?? ""
                 let profUrl = value["profileURL"] as? String ?? ""
                 print(profUrl)
                 let contact = ContactModel()
-                contact.name = name
+                contact.name = self.name
                 contact.email = email
                 contact.id = id
                 contact.profImageUrl = profUrl
@@ -113,6 +132,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
             navigationController?.popToRootViewController(animated: true)
         }
     }
+    
     
 //    @objc func signOutPressed(sender: UIBarButtonItem) {
 //

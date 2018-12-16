@@ -13,9 +13,10 @@ import Firebase
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     
-    
+    //variables
     var messageArray: [Message] = [Message]()
     var toID: String = ""
+    var name: String = ""
     var profimageURL: String = ""
     
     
@@ -44,18 +45,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configureTableView()
         retrieveMessage()
+        self.navigationItem.title = name
         
         messageTableView.separatorStyle = .none
         
     }
     
-    ///////////////////////////////////////////
-    
     //MARK: - TableView DataSource Methods
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MessageCell
-        let db = Database.database().reference().child("users").child(messageArray[indexPath.row].receiver)
+        let db = Database.database().reference().child("users").child(messageArray[indexPath.row].sender)
         db.observeSingleEvent(of: .value, with: {(snapshot) in
             if let value = snapshot.value as? NSDictionary{
                 cell.senderUsername.text = value["display_name"] as? String ?? ""
@@ -65,8 +65,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         //cell.senderUsername.text = messageArray[indexPath.row].sender
         cell.timeStamp.text = messageArray[indexPath.row].date
         cell.UserImageView.image = UIImage(named: "profile")
+        //********this is the code for profile imaage it workes but it is slow****
 //        if profimageURL == "" {
-//          
+//           cell.UserImageView.image = UIImage(named: "profile")
 //        }else {
 //            let url = NSURL(string: profimageURL)
 //            let data = try? Data(contentsOf: url! as URL)
@@ -87,7 +88,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    // Declare numberOfRowsInSection here:
+    // number of rows
     @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count
     }
@@ -105,12 +106,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    ///////////////////////////////////////////
-    
-    //MARK:- TextField Delegate Methods
-    
-    
-    
     
     //Declare textFieldDidBeginEditing here:
     //the keyboard is 258 + 50 of the message box = 308
@@ -123,7 +118,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    // Declare textFieldDidEndEditing here:
+    //textFieldDidEndEditing
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         UIView.animate(withDuration: 0.5) {
@@ -134,11 +129,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    ///////////////////////////////////////////
-    
-    
     //MARK: - Send & Recieve from Firebase
-    
     @IBAction func sendPressed(_ sender: AnyObject) {
         
         messageTextfield.endEditing(true)
@@ -164,7 +155,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
-    // Create the retrieveMessages method here:
+    // message retreiver
    func retrieveMessage(){
         let userID = Auth.auth().currentUser?.uid
     // let messageID = toID + userID!
@@ -201,24 +192,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             print(error.localizedDescription)
         }
     
-    }
-    
-    
-    
-    
-    
-    @IBAction func logOutPressed(_ sender: AnyObject) {
-        
-        //Log out the user and send them back to WelcomeViewController
-        //Mark: ~ try catch logout
-        do {
-            try Auth.auth().signOut()
-            
-            //send the user to the welcome or root view controller
-            navigationController?.popToRootViewController(animated: true)
-        } catch {
-            print("error, while signing out")
-        }
     }
     
     
