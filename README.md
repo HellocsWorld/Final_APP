@@ -5,9 +5,10 @@ a message app to chat between two users. the app allows two users to communicate
 #Must-have features
 1) a profile feature (image, name, email, password)
 2) a welcome page
-3) a login page 
-4) a message page(create new message, see old message)
+3) a login page
+4) a contact page
 5) a private message window (send and receive message)
+6) a registration page 
 
 #nice-to-have features
 1) a group chat feature 
